@@ -1,113 +1,38 @@
-<div class="text-pull-left">
-	<h2>Book a cozy dorm room at any university<span><br> and experience campus life like a student.</span></h2>
-	<p>Discover and share your dorm room to campus visitors from all over the world.</p>
-</div>
+<div class="text-center">
+	<h2><b>Classy and sexy waist beads</b></h2>
+	<p>Find your perfect match today.</p>
 
-<%= form_tag search_path, method: :get do %>
-	<div class="row">
-		<div class="col-md-6">
-			<%= text_field_tag :search, params[:search], placeholder: "Where are you going?", class: "form-control" %>
+	<!--<= form_tag search_path, method: :get do %>-->
+		<div class="row">
+			<div class="col-md-12">
+				<!--<= submit_tag "Search", class: "btn btn-primary" %>-->
+			</div>
 		</div>
-		<div class="col-md-2">
-			<%= text_field_tag :start_date, params[:start_date], placeholder: "Start Date", class: "form-control" %>
-		</div>
-		<div class="col-md-2">
-			<%= text_field_tag :end_date, params[:end_date], placeholder: "End Date", class: "form-control" %>
-		</div>
-		<div class="col-md-2">
-			<%= submit_tag "Search", class: "btn btn-primary" %>
-		</div>
-	</div>
-<% end %>
+	<!--< end %>-->
+</div>
 
 </br>
 
-	<div class="row">
-		<div class="col-md-4 col-sm-12">
-			<a href="https://naptivity.herokuapp.com/search?utf8=✓&search=new+york">
-				<div class="discovery-card" style="background-image: url('/assets/New_York.jpg')">
-					<div class="va-container">
-						<div class="va-middle text-center">
-							<h2><strong>New York</strong></h2>
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-md-4 col-sm-6">
-			<a href="https://naptivity.herokuapp.com/search?utf8=✓&search=london">
-				<div class="discovery-card" style="background-image: url('/assets/London.jpg')">
-					<div class="va-container">
-						<div class="va-middle text-center">
-							<h2><strong>London</strong></h2>
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
-	
-		<div class="col-md-4 col-sm-6">
-			<a href="https://naptivity.herokuapp.com/search?utf8=✓&search=chicago">
-				<div class="discovery-card" style="background-image: url('/assets/Berlin.jpg')">
-					<div class="va-container">
-						<div class="va-middle text-center">
-							<h2><strong>Berlin</strong></h2>
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
-	</div>
-
-<br>
-
-<div class="text-center">
-	<h2>Tour a different college each week</h2>
-	<p>See where students are crashing.</p>
+<div class="col-md-12">
+	<h2>New Waist Beads Each Week</h2>
+	<p>Beads to match your flar, personality, and favorite colors.</p>
 </div>
 
 <br>
           
-	<% @rooms.each do |room| %>
+	<% @beads.each do |bead| %>
 		
 		<div class="col-md-4">
     	<div class="panel panel-default">
 				<div class="panel-heading preview">
-					<%= image_tag room.photos[0].image.url(:medium) if room.photos.length > 0 %>
-					<div class="box-wrapper">
-          	<span><%= room.room_type %> &nbsp; <div class="fa fa-users"></div> <%= room.accommodate %></span>
-        	</div>
+					<%= image_tag bead.photos[0].image.url(:medium) if bead.photos.length > 0 %>
 				</div>
 				<div class="panel-body">
-					<div><%= image_tag avatar_url(room.user), class: "img-circle avatar-small" %> <%= link_to room.listing_name, room %></div>
-					<div><%= link_to room.address, room %></div>
-					<div>$<%= room.price %>/day</div>	
+					<div><%= link_to bead.listing_name, bead %></div>
+					<div>Size: <%= bead.waist_size %>" Waist <span class="pull-right"><b>$<%= bead.price %></b></span></div>	
 				</div>
 			</div>
 		</div>
 
 	<% end %>
 </div>
-
-<script>
-	$(function() {
-		$("#start_date").datepicker({
-			dateFormat: 'dd-mm-yy',
-			minDate: 0,
-			maxDate: '3m',
-			onSelect: function(selected) {
-				$('#end_date').datepicker("option", "minDate", selected);
-				$('#end_date').attr('disabled', false);
-			}
-		});
-		$("#end_date").datepicker({
-			dateFormat: 'dd-mm-yy',
-			minDate: 0,
-			maxDate: '3m',
-			onSelect: function(selected) {
-				$('#start_date').datepicker("option", "maxDate", selected);
-			}
-		});
-	})
-</script>

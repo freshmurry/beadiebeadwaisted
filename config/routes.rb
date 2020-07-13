@@ -12,25 +12,25 @@ Rails.application.routes.draw do
                              }
   
   resources :users, only: [:show]
-  resources :rooms
+  resources :beads
   resources :photos
 
-  resources :rooms do
-    resources :reservations, only: [:create]
+  resources :beads do
+    resources :orders, only: [:create]
   end
 
-  resources :rooms do
+  resources :beads do
     resources :reviews, only: [:create, :destroy]
   end
 
-  get '/preload' => 'reservations#preload'
-  get '/preview' => 'reservations#preview'
+  get '/preload' => 'orders#preload'
+  get '/preview' => 'orders#preview'
 
-  get '/your_trips' => 'reservations#your_trips'
-  get '/your_reservations' => 'reservations#your_reservations'
+  get '/past_orders' => 'orders#past_orders'
+  get '/current_orders' => 'orders#current_orders'
 
-  post '/notify' => 'reservations#notify'
-  post '/your_trips' => 'reservations#your_trips'
+  post '/notify' => 'orders#notify'
+  post '/past_orders' => 'orders#your_trips'
 
   get '/search' => 'pages#search'
 

@@ -8,31 +8,26 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "Naptivity", root_path, class: "navbar-brand" %>
+      <%= link_to "Beadie Bead Waisted", root_path, class: "navbar-brand" %>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-
-      <%= form_tag search_path, class: "navbar-form navbar-left", method: :get do %>
-        <div class="form-group">
-          <%= text_field_tag :search, params[:search], placeholder: "Where are you going?", class: "form-control" %>
-        </div>
-      <% end %>
 
       <ul class="nav navbar-nav navbar-right">
         
         <% if(!user_signed_in?) %>
+          <li><%= link_to "About", about_path, style: "text-decoration: none;" %></li>
           <li><%= link_to "Log In", new_user_session_path %></li>
           <li><%= link_to "Sign Up", new_user_registration_path %></li>
         <% else %>
           <li>
-            <%= link_to conversations_path do %>
-              <i class="fa fa-envelope fa-2x"></i>
-            <% end %>
+            <!--<= link_to conversations_path do %>-->
+              <!--<i class="fa fa-envelope fa-2x"></i>-->
+            <!--< end %>-->
           </li>
           
           <li>
             <button class="btn btn-form btn-small">
-              <%= link_to "Host Your Dorm Room", new_room_path, style: "color: white; text-decoration: none;" %>
+              <%= link_to "List Beads", new_bead_path, style: "color: white; text-decoration: none;" %>
             </button>
           </li>
           
@@ -44,9 +39,9 @@
 
             <ul class="dropdown-menu">
               <li><%= link_to "View My Profile", user_path(current_user.id) %></li>
-              <li><%= link_to "Your Listings", rooms_path %></li>
-              <li><%= link_to "Your Reservations", your_reservations_path %></li>
-              <li><%= link_to "Your Trips", your_trips_path %></li>
+              <li><%= link_to "Your Listings", beads_path %></li>
+              <li><%= link_to "Current Orders", current_orders_path %></li>
+              <li><%= link_to "Past Orders", past_orders_path %></li>
               <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
               <li role="separator" class="divider"></li>
               <li><a href="#">Account Setting</a></li>

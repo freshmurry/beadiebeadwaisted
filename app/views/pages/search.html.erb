@@ -8,30 +8,7 @@
 
   <div id="sidebar">
     <div id="widget" class="sticky">
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiSSi9tViV1i8wH_mTYffgwS0vXFK-NaQ"></script>
-      <script>
-        function initialize() {
-          var mapCanvas = document.getElementById('widget');
-          var mapOptions = {
-            <% if @arrRooms.length > 0 %>
-              center: new google.maps.LatLng(<%= @arrRooms[0].latitude %>, <%= @arrRooms[0].longitude %>),
-            <% else %>
-              center: new google.maps.LatLng(41.85, -87.64999999999998),
-            <% end %>
-            zoom: 14,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          }
-          var map = new google.maps.Map(mapCanvas, mapOptions);
-          <% @arrRooms.each do |room| %>
-            var marker = new google.maps.Marker({
-              position: new google.maps.LatLng(<%= room.latitude %>, <%= room.longitude %>),
-              title: "Naptivity"
-            });
-            marker.setMap(map);
-          <% end %>
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
-      </script>
+     Advertise Here
     </div>
   </div>
 
@@ -43,116 +20,28 @@
         <%= search_form_for @search, url: search_path do |f| %>
           <div class="row">
             <div class="col-md-3">
-              <%= text_field_tag :start_date, params[:start_date], placeholder: "Start Date", class: "form-control" %>
-            </div>
-            <div class="col-md-3">
-              <%= text_field_tag :end_date, params[:end_date], placeholder: "End Date", class: "form-control" %>
-            </div>
-            <div class="col-md-3">
               <%= f.text_field :price_gteq, placeholder: "Min Price", class: "form-control" %>
             </div>
             <div class="col-md-3">
-              <%= f.text_field :price_lteq, placeholder: "Max Price", class: "form-control" %>
+              <%= f.text_field :price_gteq, placeholder: "Max Price", class: "form-control" %>
             </div>
+
+            <%= f.submit "Search", class: "btn btn-primary" %>
           </div>
-
-          <hr>
-          
-          <div class="row">
-            <div class="col-md-4">
-              <%= check_box_tag "q[room_type_eq_any][]", "Entire" %> Single Occupancy
-            </div>
-            <div class="col-md-4">
-              <%= check_box_tag "q[room_type_eq_any][]", "Private" %> Double Occupancy
-            </div>
-            <div class="col-md-4">
-              <%= check_box_tag "q[room_type_eq_any][]", "Shared" %> Suite/Penthouse Style
-            </div>
-            <div class="col-md-4">
-              <%= check_box_tag "q[room_type_eq_any][]", "Private" %> Double Occupancy (Shared/Roommate)
-            </div>
-            <div class="col-md-4">
-              <%= check_box_tag "q[room_type_eq_any][]", "Shared" %> Suite/Penthouse Style (Shared/Roommate)
-            </div>
-          </div>
-
-          <hr>
-
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>Accommodate</label>
-                <%= f.select :accommodate_gteq, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6+", 6]] %>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>Beds</label>
-                <%= f.select :accommodate_gteq, [["1", 1], ["2", 2], ["3", 3], ["4+", 4]] %>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>Bathrooms</label>
-                <%= f.select :accommodate_gteq, [["1", 1], ["2", 2], ["3+", 3]] %>
-              </div>
-            </div>
-          </div>
-
-          <hr>
-
-          <div class="row">
-            <div class="col-md-4">
-              <%= check_box_tag "q[is_tv_eq", true %> TV
-            </div>
-            <div class="col-md-4">
-                <%= check_box_tag "q[is_kitchen_eq", true %> Kitchenette
-              </div>
-              <div class="col-md-4">
-                <%= check_box_tag "q[is_internet_eq", true %> Internet
-              </div>
-              <div class="col-md-4">
-                <%= check_box_tag "q[is_heating_eq", true %> Heating
-              </div>
-              <div class="col-md-4">
-                <%= check_box_tag "q[is_air_eq", true %> Air Conditioning
-              </div>
-              <div class="col-md-4">
-                <%= check_box_tag "q[is_fridge_eq", true %> Fridge
-              </div>
-              <div class="col-md-4">
-                <%= check_box_tag "q[is_laundry_eq", true %> Laundry Facility
-              </div>
-              <div class="col-md-4">
-                <%= check_box_tag "q[is_beer_eq", true %> Free Beer
-              </div>
-              <div class="col-md-4">
-                <%= check_box_tag "q[is_wifi_eq", true %> Free Wifi
-              </div>
-          </div>
-
-          <hr>
-
-          <div class="row">
-            <%= f.submit "Search", class: "btn btn-primary pull-right" %>
-          </div>
-
         <% end %>
   
         <hr>
 
         <div class="row">
-          <% @arrRooms.each do |room| %>
+          <% @arrBeads.each do |bead| %>
 
             <div class="col-md-6">
               <div class="panel panel-default">
                 <div class="panel-heading preview">
-                  <%= image_tag room.photos[0].image.url(:medium) if room.photos.length > 0 %>
+                  <%= image_tag bead.photos[0].image.url(:medium) if bead.photos.length > 0 %>
                 </div>
                 <div class="panel-body">
-                  <%= link_to room.listing_name, room %>
+                  <%= link_to bead.listing_name, bead %>
                 </div>
               </div>
             </div>
@@ -165,28 +54,6 @@
   </div>
 
 </div>
-
-<script>
-  $(function() {
-    $("#start_date").datepicker({
-      dateFormat: 'dd-mm-yy',
-      minDate: 0,
-      maxDate: '3m',
-      onSelect: function(selected) {
-        $('#end_date').datepicker("option", "minDate", selected);
-        $('#end_date').attr('disabled', false);
-      }
-    });
-    $("#end_date").datepicker({
-      dateFormat: 'dd-mm-yy',
-      minDate: 0,
-      maxDate: '3m',
-      onSelect: function(selected) {
-        $('#start_date').datepicker("option", "maxDate", selected);
-      }
-    });
-  })
-</script>
 
 <script>
   $(function(){ // document ready

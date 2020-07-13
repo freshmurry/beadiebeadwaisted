@@ -1,5 +1,6 @@
 <% if @reviews.count == 0 %>
 	<div class="text-center"><h4>There are no reviews yet</h4></div>
+	<hr>
 <% else %>
 
 	<% @reviews.order("id desc").each do |r| %>
@@ -13,7 +14,7 @@
 				<div>
 					<strong><%= r.user.fullname %> <div id="stars_<%= r.id %>"></div> </strong>
 					<span class="pull-right">
-						<%= link_to "Remove My Review", [@room, r], method: :delete, data: {confirm: "Are you sure?"} if current_user && current_user == r.user %>
+						<%= link_to "Remove My Review", [@bead, r], method: :delete, data: {confirm: "Are you sure?"} if current_user && current_user == r.user %>
 					</span>
 				</div>
 
@@ -31,5 +32,4 @@
 		</script>
 
 	<% end %>
-
 <% end %>
