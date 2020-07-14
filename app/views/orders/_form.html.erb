@@ -1,5 +1,5 @@
 <%= form_for([@bead, @bead.orders.new]) do |f| %>
-
+<div class="panel panel-default">
   <div class="col-md-12 price_tag">
     <span>$<%= @bead.price %></span>
     <span class="pull-right">Per Strand</span>
@@ -31,11 +31,11 @@
     <table class="order-table">
       <tbody>
         <tr>
-          <td>Day(s)</td>
+          <td>Qty:</td>
           <td><span id="order_days"></span></td>
         </tr>
         <tr>
-          <td>Total</td>
+          <td>Total:</td>
           <td>$<span id="order_sum"></span></td>
         </tr>
       </tbody>
@@ -43,14 +43,15 @@
     <br>
   </div>
   
-  <div class="center">
-    <% if current_user && current_user != @user %>
-      <%= link_to "Send Us a Message", conversations_path(sender_id: current_user.id, recipient_id: @bead.user.id), method: :post, class: "btn btn-default" %>
-    <% end %>
-  <div>&nbsp;
-
-  <%= f.submit "Buy Now", id: "btn_book", class: "btn btn-primary wide", disabled: 'true' %>
+    <!--< if current_user && current_user != @user %>-->
+    <!--  <%= link_to "Send Us a Message", conversations_path(sender_id: current_user.id, recipient_id: @bead.user.id), method: :post, class: "btn btn-default" %>-->
+    <!--< end %>-->
+  &nbsp;
+  <div class="text-center">
+  <%= f.submit "Buy Now", id: "btn_book", class: "btn btn-primary", disabled: 'true' %>
+  </div>
 <% end %>
+  &nbsp;
 
 <script>
   function unavailable(date) {
@@ -146,4 +147,5 @@
     });
   });
 </script>
+</div>
 <% end %>
