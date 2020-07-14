@@ -30,12 +30,12 @@ class OrdersController < ApplicationController
         business: 'lawrencemurry@yahoo.com',
         cmd: '_xclick',
         upload: 1,
-        notify_url: 'https://https://b2e7c852a8a946beaff428d059503c03.vfs.cloud9.us-east-1.amazonaws.com/notify',
+        notify_url: 'http://beadiebeadwaisted.herokuapp.com//notify',
         amount: @order.total,
         item_name: @order.bead.listing_name,
         item_number: @order.id,
         quantity: '1',
-        return: 'https:/https://b2e7c852a8a946beaff428d059503c03.vfs.cloud9.us-east-1.amazonaws.com//your_trips' #'http://########.ngrok.io/your_trips'
+        return: 'http://beadiebeadwaisted.herokuapp.com/past_orders' #'http://########.ngrok.io/past_orders'
       }
 
       redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
@@ -61,8 +61,8 @@ class OrdersController < ApplicationController
     render nothing: true
   end
 
-  protect_from_forgery except: [:your_trips]
-  def your_trips
+  protect_from_forgery except: [:past_orders]
+  def past_orders
     @trips = current_user.orders.where("status = ?", true)
   end
 
