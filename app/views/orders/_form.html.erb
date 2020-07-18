@@ -46,6 +46,9 @@
     <!--< if current_user && current_user != @user %>-->
     <!--  <= link_to "Send Us a Message", conversations_path(sender_id: current_user.id, recipient_id: @bead.user.id), method: :post, class: "btn btn-default" %>-->
     <!--< end %>-->
+     <% if current_user != @user %>
+        <%= link_to "Send Message", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, class: "btn btn-primary wide" %>
+      <% end %>
   &nbsp;
   <div class="text-center">
   <%= f.submit "Buy Now", id: "btn_book", class: "btn btn-primary", disabled: 'true' %>
