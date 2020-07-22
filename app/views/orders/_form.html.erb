@@ -10,7 +10,7 @@
       <div class="container">
        <div class="col-md-12 select">
           <div class="form-group">
-          <label>Waist Size</label>
+          <label><b>Waist Size</b></label>
             <%= f.select :waist_size, [["20", 20], ["21", 21], ["22", 22], ["23", 23], ["24", 24],
              ["25", 25], ["26", 26], ["27", 27], ["28", 28], ["29", 29], ["30", 30], ["31", 31], ["32", 32], ["33", 33], ["34", 34], ["35", 35], ["36", 36],
               ["37", 37], ["38", 38], ["39", 39], ["40", 40], ["41", 41], ["42", 42]], prompt: "Select...", class: "form-control" %>
@@ -43,17 +43,17 @@
     <br>
   </div>
   
-    <!--< if current_user && current_user != @user %>-->
-    <!--  <= link_to "Send Us a Message", conversations_path(sender_id: current_user.id, recipient_id: @bead.user.id), method: :post, class: "btn btn-default" %>-->
-    <!--< end %>-->
-     <% if current_user != @user %>
-        <%= link_to "Send Message", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, class: "btn btn-primary wide" %>
-      <% end %>
+  <!--<div class="col-md-12">-->
+  <!--  < if current_user && current_user != @user %>-->
+  <!--    <= link_to "Send Us a Message", conversations_path(sender_id: current_user.id, recipient_id: @bead.user.id), method: :post, class: "btn btn-default" %>-->
+  <!--  < end %>-->
+  <!--</div>-->
   &nbsp;
+    
   <div class="text-center">
-  <%= f.submit "Buy Now", id: "btn_book", class: "btn btn-primary", disabled: 'true' %>
+    <%= f.submit "Buy Now", id: "btn_book", class: "btn btn-primary", disabled: 'true' %>
   </div>
-<% end %>
+  <% end %>
   &nbsp;
 
 <script>
@@ -75,22 +75,22 @@
               unavailableDates.push($.datepicker.formatDate('d-m-yy', d));
           }
         });
-        $('#order_start_date').datepicker({
-          dateFormat: 'mm-dd-yy',
-          minDate: 0,
-          maxDate: '3m',
-          beforeShowDay: unavailable,
-          onSelect: function(selected) {
-            $('#order_end_date').datepicker("option", "minDate", selected);
-            $('#order_end_date').attr('disabled', false);
-            var start_date = $(this).datepicker('getDate');
-            var end_date = $('#order_end_date').datepicker('getDate');
-            var days = (end_date - start_date)/1000/60/60/24 + 1
-            var input = {
-              'start_date': start_date,
-              'end_date': end_date,
-              'bead_id': <%= @bead.id %>
-            }
+        // $('#order_start_date').datepicker({
+        //   dateFormat: 'mm-dd-yy',
+        //   minDate: 0,
+        //   maxDate: '3m',
+        //   beforeShowDay: unavailable,
+        //   onSelect: function(selected) {
+        //     $('#order_end_date').datepicker("option", "minDate", selected);
+        //     $('#order_end_date').attr('disabled', false);
+        //     var start_date = $(this).datepicker('getDate');
+        //     var end_date = $('#order_end_date').datepicker('getDate');
+        //     var days = (end_date - start_date)/1000/60/60/24 + 1
+        //     var input = {
+        //       'start_date': start_date,
+        //       'end_date': end_date,
+        //       'bead_id': <%= @bead.id %>
+        //     }
             $.ajax({
               url: "/preview",
               data: input,
@@ -109,23 +109,23 @@
                 }
               }
             });
-          }
-        });
-        $('#order_end_date').datepicker({
-          dateFormat: 'mm-dd-yy',
-          minDate: 0,
-          maxDate: '3m',
-          beforeShowDay: unavailable,
-          onSelect: function(selected) {
-            $('#order_start_date').datepicker("option", "maxDate", selected);
-            var start_date = $('#order_start_date').datepicker('getDate');
-            var end_date = $(this).datepicker('getDate');
-            var days = (end_date - start_date)/1000/60/60/24 + 1
-            var input = {
-              'start_date': start_date,
-              'end_date': end_date,
-              'bead_id': <%= @bead.id %>
-            }
+        //   }
+        // });
+        // $('#order_end_date').datepicker({
+        //   dateFormat: 'mm-dd-yy',
+        //   minDate: 0,
+        //   maxDate: '3m',
+        //   beforeShowDay: unavailable,
+        //   onSelect: function(selected) {
+        //     $('#order_start_date').datepicker("option", "maxDate", selected);
+        //     var start_date = $('#order_start_date').datepicker('getDate');
+        //     var end_date = $(this).datepicker('getDate');
+        //     var days = (end_date - start_date)/1000/60/60/24 + 1
+        //     var input = {
+        //       'start_date': start_date,
+        //       'end_date': end_date,
+        //       'bead_id': <%= @bead.id %>
+        //     }
             $.ajax({
               url: "/preview",
               data: input,
