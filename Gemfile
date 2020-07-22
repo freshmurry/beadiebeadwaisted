@@ -24,7 +24,7 @@ gem 'geocoder'
 gem 'jquery-ui-rails'
 gem 'private_pub'
 gem 'ransack'
-gem 'puma'
+gem 'thin'
 
 gem 'figaro'
 gem 'font-awesome-rails'
