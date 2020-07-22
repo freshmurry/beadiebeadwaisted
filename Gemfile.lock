@@ -147,6 +147,7 @@ GEM
     net-scp (2.0.0)
       net-ssh (>= 2.6.5, < 6.0.0)
     net-ssh (5.2.0)
+    nio4r (2.5.2)
     nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
     nokogiri (1.10.7-x86-mingw32)
@@ -177,6 +178,8 @@ GEM
     private_pub (1.0.3)
       faye
     public_suffix (4.0.3)
+    puma (4.3.5)
+      nio4r (~> 2.0)
     rack (1.6.12)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -297,6 +300,7 @@ DEPENDENCIES
   paperclip (= 4.3.6)
   pg (~> 0.20.0)
   private_pub
+  puma
   rails (= 4.2.6)
   rails_12factor
   railties (~> 4.2, >= 4.2.6)
@@ -313,7 +317,7 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 RUBY VERSION
-   ruby 2.4.6p354
+   ruby 2.3.4p301
 
 BUNDLED WITH
    1.17.3
