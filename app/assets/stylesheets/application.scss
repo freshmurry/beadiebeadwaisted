@@ -3,6 +3,13 @@
 @import "toastr";
 @import "font-awesome";
 
+@font-face {
+  font-family: 'Billabong';
+  src: font-url('Billabong.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   
   color: #565a5c;
@@ -50,23 +57,25 @@ body {
 }
 
 .navbar-default .navbar-brand {
-  color: #2C3E50;
-  font-size: 2.5em;
-  font-weight: bold; 
-  font-family: Helvetica;
   margin-top: 5px;
+  color: #FF5A5F;
+  font-family: Billabong;
+  max-height: 100%;
+  max-width: 100%;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 414px){
+  .navbar-brand {
+    padding-left: 0;
+  }
 }
 
 .navbar button {
   margin-top: 10px;
   background-color: #ECF0F1;
   text-decoration: none;
-}
-
-.navbar-default .navbar-brand {
-  color: #FF5A5F;
-  font-size: 2em;
-  font-weight: 400;
 }
 
 .btn-primary.btn {

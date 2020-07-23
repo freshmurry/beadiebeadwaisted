@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
 
       # send request to PayPal
       values = {
-        business: 'lawrencemurry@yahoo.com',
+        business: 'blankslatoya@gmail.com',
         cmd: '_xclick',
         upload: 1,
         notify_url: 'http://beadiebeadwaisted.herokuapp.com//notify',
